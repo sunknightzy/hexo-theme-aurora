@@ -13,20 +13,6 @@
               <b class="font-extrabold">{{ themeConfig.site.author }}</b>
               . All Rights Reserved.
             </li>
-            <li>
-              Powered by
-              <a href="https://hexo.io/">
-                <b class="font-extrabold border-b-2 border-ob hover:text-ob">
-                  Hexo
-                </b>
-              </a>
-              & Themed by
-              <a href="https://github.com/obsidianext/hexo-theme-obsidianext">
-                <b class="font-extrabold border-b-2 border-ob hover:text-ob">
-                  Aurora v{{ themeConfig.version }}
-                </b>
-              </a>
-            </li>
             <li
               v-if="
                 themeConfig.site.beian.number !== '' ||
@@ -58,10 +44,25 @@
             </li>
           </ul>
           <ul class="flex flex-col flex-1 gap-1.5">
+            <li v-if="runningDays" class="flex flex-row max-w-[11rem]">
+              <span>
+                <SvgIcon
+                  icon-class="date"
+                  class="mr-1 text-lg inline-block"
+                  stroke="currentColor"
+                />
+                {{ t('settings.site-running-for') }}
+              </span>
+              <span class="flex-1 text-right"
+                >{{ runningDays }}
+                {{ t('settings.site-running-for-unit') }}</span
+              >
+            </li>
+          </ul>
+          <ul class="flex flex-col flex-1 gap-1.5">
             <li
               class="flex flex-row max-w-[11rem]"
-              v-if="enabledPlugin === 'waline'"
-            >
+              v-if="enabledPlugin === 'waline'">
               <span>
                 <SvgIcon
                   icon-class="hot"
@@ -70,7 +71,7 @@
                 />
                 {{ t('settings.page-views-value') }}
               </span>
-              <span class="flex-1 text-right">
+              <span class="flex-1 text-left">
                 <span class="waline-pageview-count" data-path="/" />
               </span>
             </li>
@@ -108,32 +109,7 @@
                 <span id="busuanzi_value_site_uv"
               /></span>
             </li>
-
-            <li v-if="runningDays" class="flex flex-row max-w-[11rem]">
-              <span>
-                <SvgIcon
-                  icon-class="date"
-                  class="mr-1 text-lg inline-block"
-                  stroke="currentColor"
-                />
-                {{ t('settings.site-running-for') }}
-              </span>
-              <span class="flex-1 text-right"
-                >{{ runningDays }}
-                {{ t('settings.site-running-for-unit') }}</span
-              >
-            </li>
           </ul>
-        </div>
-        <div
-          class="hidden lg:flex lg:col-span-1 justify-center lg:justify-end row-span-1 relative"
-        >
-          <img
-            v-show="themeConfig.site.avatar"
-            :class="avatarClass"
-            :src="themeConfig.site.avatar"
-            alt="avatar"
-          />
         </div>
       </div>
     </span>
